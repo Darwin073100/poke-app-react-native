@@ -1,16 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableHighlight} from 'react-native';
-const icon = require('./assets/android-icon-foreground.png');
+import { StyleSheet, View} from 'react-native';
+import { Main } from './components/Main';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style='light' />
-      <TouchableHighlight
-        underlayColor={"#09f"} 
-        onPress={()=> alert('Hola')}>
-          <Text style={{color: 'white', backgroundColor: 'blue', padding: 8, borderRadius: 4}}>Pulsar aqui</Text>
-      </TouchableHighlight>
+      <SafeAreaProvider>
+        <Main/>
+      </SafeAreaProvider>
     </View>
   );
 }
@@ -21,5 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center', 
+    // paddingTop: Constants.statusBarHeight
   },
 });
