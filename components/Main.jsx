@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView} from 'react-native';
-// import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Constants from 'expo-constants';
+import { StyleSheet, FlatList, View, ScrollView, ActivityIndicator} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AnimatedPokemonCard, PokemonCard } from './PokemonCard';
 
 export function Main() {
   const [pokemons, setPokemons] = useState([]);
@@ -26,33 +25,20 @@ export function Main() {
 
   return (
     <View style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
-      <ScrollView>
-      {pokemons.map(item => (
-        <View key={item.name} style={styles.card}>
-          <Image source={{uri: item.image}} style={styles.image}/>
-          <Text style={styles.name}>{item.name}</Text>
-        </View>
-      ))}
-      </ScrollView>
+      {pokemons.length === 0 ?(
+        <ActivityIndicator size="large" />
+      ): (
+        <FlatList
+          data={pokemons}
+          renderItem={({item, index}) => <AnimatedPokemonCard key={item.name} pokemon={item} index={index}/>}
+          keyExtractor={(item) => item.name}
+        />
+      )}
+      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  name:{
-    color: 'white',
-    fontSize: 20
-  },
-  card:{
 
-  },
-  image:{
-    backgroundColor: '#fff',
-    width:100,
-    height: 100,
-    borderRadius: 10,
-  },
-  view:{
-    // paddingTop: insets.
-  }
 });
