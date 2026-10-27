@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 // import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Constants from 'expo-constants';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export function Main() {
   const [pokemons, setPokemons] = useState([]);
-  
+  const insets = useSafeAreaInsets();
 
   useEffect(()=> {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
@@ -24,7 +25,7 @@ export function Main() {
   }, []);
 
   return (
-    <View style={{paddingTop: Constants.statusBarHeight}}>
+    <View style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
       <ScrollView>
       {pokemons.map(item => (
         <View key={item.name} style={styles.card}>
@@ -52,6 +53,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   view:{
-    paddingTop: insets
+    // paddingTop: insets.
   }
 });
