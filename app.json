@@ -17,9 +17,13 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       }
     },
+    "scheme": "pokemon",
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

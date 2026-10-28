@@ -1,3 +1,5 @@
 allowBuilds:
   ejs: false
   unrs-resolver: false
+minimumReleaseAgeExclude:
+  - expo-router@58.0.27
