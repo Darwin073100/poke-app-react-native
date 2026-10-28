@@ -3,7 +3,7 @@ import { Animated, Image, StyleSheet, Text, View } from 'react-native'
 
 export const PokemonCard = ({pokemon}) => {
   return (
-    <View key={pokemon.name} style={styles.card}>
+    <View key={pokemon.name} className="border border-white flex-row items-center justify-start gap-4 p-4 bg-blue-400 m-2 rounded-lg">
         <Image source={{uri: pokemon.image}} style={styles.image}/>
         <Text style={styles.name}>{pokemon.name}</Text>
     </View>
