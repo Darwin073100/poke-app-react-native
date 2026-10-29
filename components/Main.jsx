@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, FlatList, View, ScrollView, ActivityIndicator, Text, Pressable} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AnimatedPokemonCard, PokemonCard } from './PokemonCard';
-import { Link } from 'expo-router';
-import { CircleInfoIcon } from "./Icons";
+import { Screen } from "./Screen";
 
 export function Main() {
   const [pokemons, setPokemons] = useState([]);
@@ -27,15 +26,7 @@ export function Main() {
   }, []);
 
   return (
-    <View style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
-      
-      <Link href="/about" asChild>
-        <Pressable className="mb-4 rounded-lg bg-white p-4 m-4 flex-row items-center gap-2">
-          {({pressed})=> <><CircleInfoIcon style={{opacity: pressed ? 0.5 : 1}}/>
-          <Text className="font-semibold text-black" style={{opacity: pressed ? 0.5 : 1}}>Ir al about</Text></>}
-        </Pressable>
-      </Link>
-      
+    <Screen>      
       {pokemons.length === 0 ?(
         <ActivityIndicator size="large" />
       ): (
@@ -46,7 +37,7 @@ export function Main() {
         />
       )}
       
-    </View>
+    </Screen>
   );
 }
 
